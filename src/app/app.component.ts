@@ -80,7 +80,7 @@ export class AppComponent {
       this.dois = res;
       console.log(this.dois);
     });
-    // This is a Test For Git
+    // This is a Test For Git.
   }
 
   getClientDOINumbers(id: string) {
