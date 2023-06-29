@@ -13,11 +13,17 @@
   </div>
   <hr/>
   <div class="row m-3" *ngIf="providers != undefined">
-    <div class="col">
+    <div class="col-10">
       <span class="d-flex justify-content-start">
         <h2>Consortium Providers :</h2>
       </span>
     </div>
+    <div class="col-1">
+      <input class="form-control form-control-sm" [(ngModel)]="consortiumPageNo" (change)="consortiumNewPage()" />
+    </div>
+    <div class="col-1">
+      <span>/ {{ providers.meta.totalPages }}</span>
+    </div>    
   </div>
   <div class="row m-3" *ngIf="providers != undefined">
     <div class="col">
@@ -47,11 +53,17 @@
   </div>
   <hr/>
   <div class="row m-3" *ngIf="clients != undefined">
-    <div class="col">
+    <div class="col-10">
       <span class="d-flex justify-content-start">
         <h2>Provider {{ selectedProviderId }} Clients :</h2>
       </span>
     </div>
+    <div class="col-1">
+      <input class="form-control form-control-sm" [(ngModel)]="providerPageNo" (change)="providerNewPage(this.selectedProviderId)" />
+    </div>
+    <div class="col-1">
+      <span>/ {{ clients.meta.totalPages }}</span>
+    </div>      
   </div>
   <div class="row m-3" *ngIf="clients != undefined">
     <div class="col">
@@ -62,6 +74,7 @@
             <th scope="col">Client ID</th>
             <th scope="col">Client Name</th>
             <th scope="col">Symbol</th>
+            <th scope="col">Number Of DOIs</th>
             <th scope="col">DOIs</th>            
           </tr>
         </thead>
@@ -71,6 +84,7 @@
             <td>{{ item.id }}</td>
             <td>{{ item.attributes.name }}</td>
             <td>{{ item.attributes.symbol }}</td>
+            <td>{{ getClientDOINumbers(item.id) }}</td>
             <td>
               <button class="btn btn-sm btn-primary mb-3" (click)="getDOIs(item.id)">Get DOIs</button>
             </td>
